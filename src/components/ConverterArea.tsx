@@ -34,7 +34,7 @@ export default function ConverterArea() {
   const [is_converting, setIsConverting] = useState<boolean>(false);
   const [is_done, setIsDone] = useState<boolean>(false);
   const [is_ready, setIsReady] = useState<boolean>(false);
-  const [err, setErr] = useState<boolean>(false);
+  const [err, setErr] = useState<any>();
   const ffmpegRef = useRef<any>(null);
 
   useEffect(() => {
@@ -44,7 +44,7 @@ export default function ConverterArea() {
         ffmpegRef.current = ffmpeg;
       } catch (error) {
         console.error("Error loading FFmpeg:", error);
-        setErr(true);
+        setErr(error);
         toast.error("Failed to load FFmpeg");
       }
     };
@@ -253,16 +253,23 @@ export default function ConverterArea() {
 
   if (err) {
     return (
-      <div className="bg-gray-50 h-72 lg:h-80 xl:h-96 rounded-3xl shadow-sm border-2 border-dashed cursor-pointer flex items-center justify-center text-center font-medium text-2xl text-red-500">
-        <span>
-          Oops! something unexpected happended , Try refreshing the page
-        </span>
-      </div>
+      //    //{" "}
+      //    <div className="bg-gray-50 h-72 lg:h-80 xl:h-96 rounded-3xl shadow-sm border-2 border-dashed cursor-pointer flex items-center justify-center text-center font-medium text-2xl text-red-500">
+      //    //{" "}
+      //    <span>
+      //      // Oops! something unexpected happended , Try refreshing the page //{" "}
+      //    </span>
+      //    //{" "}
+      //  </div>
+      <>
+        <span>{err}</span>
+        <span>{crossOriginIsolated ? "true" : "false"}</span>
+      </>
     );
   }
 
   return (
-    <div>
+    <div className="p-8 lg:p-20">
       {actions.length === 0 ? (
         <Dropzone
           onDrop={handleUpload}

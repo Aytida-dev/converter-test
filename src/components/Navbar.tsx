@@ -1,8 +1,12 @@
 const Navbar = () => {
   return (
-    <div className=" w-full flex justify-center items-center border-black border-b-4">
-      Navbar
-    </div>
+    <header className=" bg-slate-200 shadow-lg py-4">
+      <div className="container mx-auto flex justify-center items-center">
+        <a href="/" className="text-white text-2xl font-semibold">
+          Your Logo
+        </a>
+      </div>
+    </header>
   );
 };
 
